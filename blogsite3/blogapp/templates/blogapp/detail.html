@@ -1,0 +1,42 @@
+{% extends "blogapp/base.html" %}
+
+
+{% block body_block %}
+
+
+      <h2 class='mt-5'>{{ post.title }}</h2>
+      <small>{{ post.date_added }}</small>
+      <p><strong>{{ post.intro }}</strong></p>
+      <p>{{ post.body }}</p>
+
+
+      <hr>
+
+        <h3 class='mt-5'>Comments</h3>
+
+        {% for comment in post.comments.all  %}
+          <article class="">
+            <div class="container">
+              <p>
+                <strong>{{ comment.name}}</strong> <small>{{ comment.date_added }}</small>
+                <br>
+                {{ comment.body}}
+
+              </p>
+            </div>
+          </article>
+
+        {% endfor %}
+
+      <hr>
+        <h3>Add Comment</h3>
+
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p}}
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form>
+      <hr>
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "blogapp/base.html" %}
+
+
+{% block body_block %}
+  {% for post in posts %}
+    {% if post %}
+
+      <h2 class='mt-5'><a href="{% url 'detail' post.slug %}">{{ post.title }}</a></h2>
+      <small>{{ post.date_added }}</small>
+      <h4>{{ post.intro }}</h4>
+      <a href="{% url 'detail' post.slug %}">Read more..</a>
+
+    {% endif %}
+  {% endfor %}
+{% endblock %}
